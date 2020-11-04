@@ -1,12 +1,37 @@
 <template>
   <div class="Nav">
-    <p>Logged In: {{ authed }}</p>
-    <button
-      class="btn btn-dark logout-btn"
-      @click.prevent="logMeOut"
-    >
-      Logout
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" />
+      </button>
+
+      <div
+        id="navbarSupportedContent"
+        class="collapse navbar-collapse"
+      >
+        <ul
+          v-if="authed"
+          class="navbar-nav ml-auto"
+        >
+          <li class="nav-item">
+            <button
+              class="btn btn-dark logout-btn"
+              @click.prevent="logMeOut"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -26,3 +51,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.Nav {
+  nav{
+    min-height: 54px;
+  }
+}
+</style>
