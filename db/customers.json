@@ -1,0 +1,17 @@
+{
+    "customer1": {
+        "display_name": "David Everett",
+        "email": "davideverett1989@gmail.com",
+        "uid": "mGFCzItMLyX8PggSmPW5FEQlI1t2"
+    },
+    "customer2": {
+        "display_name": "Katie McCall",
+        "email": "katiemccall808@gmail.com",
+        "uid": "123456789"
+    },
+    "customer3": {
+        "display_name": "Jordan Birch",
+        "email": "jbirch40@gmail.com",
+        "uid": "987654321"
+    }
+}
