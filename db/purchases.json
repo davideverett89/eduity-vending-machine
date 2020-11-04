@@ -1,0 +1,42 @@
+{
+    "purchase1": {
+        "customer_uid": "mGFCzItMLyX8PggSmPW5FEQlI1t2",
+        "soda_id": "soda1",
+        "datestamp": "October 26th 2020, 12:00:50 pm"
+    },
+    "purchase2": {
+        "customer_uid": "mGFCzItMLyX8PggSmPW5FEQlI1t2",
+        "soda_id": "soda2",
+        "datestamp": "October 27th 2020, 1:30:30 pm"
+    },
+    "purchase3": {
+        "customer_uid": "mGFCzItMLyX8PggSmPW5FEQlI1t2",
+        "soda_id": "soda3",
+        "datestamp": "October 28th 2020, 2:30:25 pm"
+    },
+    "purchase4": {
+        "customer_uid": "mGFCzItMLyX8PggSmPW5FEQlI1t2",
+        "soda_id": "soda4",
+        "datestamp": "October 29th 2020, 11:30:45 am"
+    },
+    "purchase5": {
+        "customer_uid": "123456789",
+        "soda_id": "soda5",
+        "datestamp": "October 26th 2020, 11:15:35 am"
+    },
+    "purchase6": {
+        "customer_uid": "123456789",
+        "soda_id": "soda6",
+        "datestamp": "October 27th 2020, 9:30:50 pm"
+    },
+    "purchase7": {
+        "customer_uid": "987654321",
+        "soda_id": "soda7",
+        "datestamp": "October 26th 2020, 10:30:30 am"
+    },
+    "purchase8": {
+        "customer_uid": "987654321",
+        "soda_id": "soda8",
+        "datestamp": "October 27th 2020, 12:00:00 pm"
+    }
+}
