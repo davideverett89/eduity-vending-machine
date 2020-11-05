@@ -48,11 +48,6 @@ export default {
   },
   destroyed() {
     this.removeListener();
-  },
-  methods: {
-    testFunction() {
-      console.log('Hello world!');
-    },
   }
 }
 </script>

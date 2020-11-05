@@ -4,4 +4,7 @@
 
 body {
   background-color: $favColor;
+  .vending-machine-component {
+    background-color: $secondaryColor;
+  }
 }
