@@ -27,6 +27,7 @@ import authData from '../helpers/data/authData';
 export default {
     name: "Auth",
     methods:{
+      // Simple Firebase authentication.
         login() {
             const provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithPopup(provider)
@@ -35,6 +36,8 @@ export default {
               })
               .catch((err) => console.error('Unable to login:', err));
         },
+        // Get the currently authenticated user's email address, and query the database to see if they have logged in before.
+        // If the response array has a length of zero, meaning they have never logged in before, call the function to create a new customer object.
         customerCheck() {
           customerData.getCustomerByEmail(authData.getEmail())
             .then((response) => {
@@ -44,6 +47,7 @@ export default {
             })
             .catch((err) => console.error('There was an issue checking for customer information at login:', err));
         },
+        // Creates a new customer object, grabbing the data from Firebase's built in methods, and posting it to the database.
         handleCreateCustomer() {
           const newCustomer = {
             display_name: authData.getDisplayName(),
