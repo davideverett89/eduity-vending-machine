@@ -56,13 +56,12 @@ export default {
           vendedSoda: {},
       }
   },
+  // When the vending machine component initializes, it gets the array of available sodas from the database.
   mounted() {
     this.getData();
   },
-  destroyed() {
-    console.log('Vending machine unmounted!');
-  },
   methods: {
+    // Calls the function that queries the database for all of the sodas on record, and then sets the resulting array to state.
     getData() {
       sodaData.getSodas()
         .then((sodas) => {
@@ -70,9 +69,11 @@ export default {
         })
         .catch((err) => console.error('There was an issue getting all sodas:', err));
     },
+    // Accepts a number of milliseconds as an argument, and then returns a promise that performs other tasks after the passed in interval.
     delay(t) { 
       return new Promise((resolve) => setTimeout(resolve, t))
     },
+    // Accepts a soda object as an argument, sets it to state to be displayed in the vending slot for a set period of time, before being cleared.
     vend(soda) {
       this.vendedSoda = soda;
       this.currentlyVending = true;
@@ -90,6 +91,8 @@ export default {
           this.getData();
         });
     },
+    // Triggered by click event.  If there is a coin inserted into the mahcine and the soda quantity is more than zero, creates a purchase object
+    // to be posted to the database.
       makePurchase(soda) {
           if (this.coinInserted && soda.quantity > 0) {
               const newPurchase = {
@@ -105,9 +108,11 @@ export default {
                 .catch((err) => console.error('There was an error posting a new purchase:', err));
           }
       },
+      // Click event triggered by the insert coin button in the CoinSlot component.  Changes the coinInserted boolean variable in state to true.
       insertCoin() {
           this.coinInserted = true;
       },
+      // Click event triggered by the eject coin button in the CoinSlot component.  Changes the coinInserted boolean variable in state to false.
       ejectCoin() {
           this.coinInserted = false;
       },

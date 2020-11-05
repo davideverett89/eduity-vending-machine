@@ -38,6 +38,8 @@ export default {
     }
   },
   mounted() {
+    // Built in Firebase observer function that watches for changes in the authentication state of the application.
+    // Sets the authed state boolean variable accordingly.
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.authed = true;
@@ -47,6 +49,7 @@ export default {
     });
   },
   destroyed() {
+    // Calls the observer function again as a cleanup.
     this.removeListener();
   }
 }

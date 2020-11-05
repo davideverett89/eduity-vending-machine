@@ -27,6 +27,7 @@ export default {
         },
     },
     computed: {
+      // Dynamically returns a string of classes based on whether or not a customer has inserted a coin, if the soda is sold out, or both.
       applyClass() {
         let extraClass = '';
         if (this.coinInserted && this.soda.quantity > 0) {

@@ -45,6 +45,7 @@ export default {
         authed: Boolean
     },
     methods: {
+      // Firebase built in method to remove the Firebase auth token from the browser.
         logMeOut() {
             firebase.auth().signOut();
         }
