@@ -20,4 +20,6 @@ const getSodas = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getSodas };
+const getSodaById = (sodaId) => axios.get(`${baseUrl}/sodas/${sodaId}.json`);
+
+export default { getSodas, getSodaById };

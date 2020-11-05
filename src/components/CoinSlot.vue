@@ -1,7 +1,16 @@
 <template>
   <div class="CoinSlot border border-dark rounded p-5 mt-3">
-    <h3 class="lcd-display border border-dark">
+    <h3
+      v-if="currentlyVending === false"
+      class="lcd-display border border-dark"
+    >
       {{ coinInserted ? '$0.25' : '$0.00' }}
+    </h3>
+    <h3
+      v-else
+      class="lcd-display border border-dark"
+    >
+      Vending...
     </h3>
     <div class="d-flex justify-content-around align-items-center mt-5">
       <button
@@ -36,6 +45,10 @@ export default {
           type: Boolean,
           default: false
       },
+      currentlyVending: {
+        type: Boolean,
+        default: false
+      }
   },
 }
 </script>

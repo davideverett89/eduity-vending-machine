@@ -7,40 +7,53 @@
           :key="soda.id"
           :soda="soda"
           :coin-inserted="coinInserted"
-          @click.native="vend(soda.id)"
+          @click.native="makePurchase(soda)"
         />
       </div>
       <div class="vending-machine-component col-3 border border-dark rounded interface-box">
+        <h2 class="mt-2">
+          Insert coin and make selection.
+        </h2>
         <CoinSlot
           :insert-coin="insertCoin"
           :eject-coin="ejectCoin"
           :coin-inserted="coinInserted"
+          :currently-vending="currentlyVending"
         />
-        <VendingSlot />
+        <div class="vending-slot mt-5 border border-dark rounded">
+          <VendedSoda
+            v-if="currentlyVending"
+            :vended-soda="vendedSoda"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
 import sodaData from '../helpers/data/sodaData';
+import purchaseData from '../helpers/data/purchaseData';
+import authData from '../helpers/data/authData';
 
 import Soda from './Soda';
 import CoinSlot from './CoinSlot';
-import VendingSlot from './VendingSlot';
+import VendedSoda from './VendedSoda';
 
 export default {
   name: "VendingMachine",
   components: {
       Soda,
       CoinSlot,
-      VendingSlot,
+      VendedSoda,
   },
   data() {
       return {
           sodas: [],
           coinInserted: false,
           currentlyVending: false,
+          vendedSoda: {},
       }
   },
   mounted() {
@@ -54,9 +67,31 @@ export default {
       console.log('Vending machine unmounted!');
   },
   methods: {
-      vend(sodaId) {
+    delay(t) { 
+      return new Promise((resolve) => setTimeout(resolve, t))
+    },
+    vend(soda) {
+      this.vendedSoda = soda;
+      this.currentlyVending = true;
+      this.delay(5000)
+        .then(() => {
+          this.vendedSoda = {};
+          this.currentlyVending = false;
+        });
+    },
+      makePurchase(soda) {
           if (this.coinInserted) {
-              console.log('Vended soda:', sodaId);
+              const newPurchase = {
+                customer_uid: authData.getUid(),
+                soda_id: soda.id,
+                timestamp: moment().format('MMMM Do YYYY, h:mm:ss a')
+              };
+              purchaseData.postPurchase(newPurchase)
+                .then(() => {
+                  this.coinInserted = false;
+                  this.vend(soda);
+                })
+                .catch((err) => console.error('There was an error posting a new purchase:', err));
           }
       },
       insertCoin() {
@@ -72,5 +107,7 @@ export default {
 </script>
 
 <style>
-
+.vending-slot {
+  min-height: 755px;
+}
 </style>
