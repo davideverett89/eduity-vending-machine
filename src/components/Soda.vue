@@ -32,6 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .Soda {
+  display: block;
     margin: 10px 0;
     .soda-card {
         height: 500px;
