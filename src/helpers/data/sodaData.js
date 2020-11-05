@@ -20,6 +20,17 @@ const getSodas = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const getSodaById = (sodaId) => axios.get(`${baseUrl}/sodas/${sodaId}.json`);
+const patchSoda = (sodaId, newQuantity) => {
+    return axios({
+    method: 'PATCH',
+    url: `${baseUrl}/sodas/${sodaId}.json`,
+    headers: {
+        Accept: 'application/json',
+    },
+    data: {
+        quantity: newQuantity
+    }
+})
+};
 
-export default { getSodas, getSodaById };
+export default { getSodas, patchSoda };

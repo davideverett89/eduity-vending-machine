@@ -57,16 +57,19 @@ export default {
       }
   },
   mounted() {
-    sodaData.getSodas()
-      .then((sodas) => {
-          this.sodas = sodas;
-      })
-      .catch((err) => console.error('There was an issue getting all sodas:', err));
+    this.getData();
   },
   destroyed() {
-      console.log('Vending machine unmounted!');
+    console.log('Vending machine unmounted!');
   },
   methods: {
+    getData() {
+      sodaData.getSodas()
+        .then((sodas) => {
+            this.sodas = sodas;
+        })
+        .catch((err) => console.error('There was an issue getting all sodas:', err));
+    },
     delay(t) { 
       return new Promise((resolve) => setTimeout(resolve, t))
     },
@@ -75,12 +78,20 @@ export default {
       this.currentlyVending = true;
       this.delay(5000)
         .then(() => {
+          if (this.vendedSoda.quantity > 0) {
+            const newQuantity = this.vendedSoda.quantity - 1;
+            sodaData.patchSoda(soda.id, newQuantity)
+              .then(() => {
+                this.getData();
+              });
+          }
           this.vendedSoda = {};
           this.currentlyVending = false;
+          this.getData();
         });
     },
       makePurchase(soda) {
-          if (this.coinInserted) {
+          if (this.coinInserted && soda.quantity > 0) {
               const newPurchase = {
                 customer_uid: authData.getUid(),
                 soda_id: soda.id,
@@ -95,18 +106,16 @@ export default {
           }
       },
       insertCoin() {
-          console.log('Coin inserted!');
           this.coinInserted = true;
       },
       ejectCoin() {
-          console.log('Coin ejected!');
           this.coinInserted = false;
       },
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .vending-slot {
   min-height: 755px;
 }

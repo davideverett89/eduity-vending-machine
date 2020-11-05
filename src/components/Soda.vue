@@ -2,7 +2,7 @@
   <div class="Soda col-3">
     <div
       class="card soda-card pb-1 pt-5 px-4"
-      :class="[coinInserted ? 'coin-inserted' : 'no-coin']"
+      :class="applyClass"
     >
       <img
         class="card-img-top img-fluid max-width: 100% height:auto mt-3 mb-0"
@@ -25,8 +25,22 @@ export default {
           type: Boolean,
           default: false
         },
+    },
+    computed: {
+      applyClass() {
+        let extraClass = '';
+        if (this.coinInserted && this.soda.quantity > 0) {
+          extraClass += 'coin-inserted';
+        } else if (this.soda.quantity === 0) {
+          extraClass += 'no-coin sold-out';
+        } else if (this.coinInserted && this.soda.quantity === 0) {
+          extraClass += 'no-coin sold-out';
+        } else {
+          extraClass += 'no-coin';
+        }
+        return extraClass;
+      },
     }
-
 }
 </script>
 
@@ -46,6 +60,13 @@ export default {
     }
     .no-coin {
       filter: brightness(70%);
+    }
+    .sold-out::after {
+      content: url("https://raw.githubusercontent.com/morecallan/css102-e6/master/images/soldOut.png");
+      opacity: 1;
+      position: relative;
+      right: 115px;
+      bottom: 315px;
     }
 }
 </style>

@@ -9,7 +9,7 @@
       These will not be shared with anyone else.
     </p>
     <button
-      class="btn btn-primary login-btn"
+      class="btn btn-dark login-btn"
       @click.prevent="login"
     >
       Login
