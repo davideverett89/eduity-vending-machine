@@ -25,11 +25,5 @@ export default {
 <style lang="scss" scoped>
 .VendedSoda {
     display: block;
-    .vended-soda-card {
-        height: 500px;
-        overflow: hidden;
-        border-radius: 500px;
-        box-shadow: 0px 0px 6px #B2B2B2;
-    }
 }
 </style>
