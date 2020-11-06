@@ -37,7 +37,11 @@ This project is my submission to the Eduity Client Side Programming Challenge.  
 - Vue 2.6.12
 
 ## Screenshots
-Coming Soon!
+![Vending Machine 1](src/screenshots/vending-machine-1.png)
+![Vending Machine 2](src/screenshots/vending-machine-2.png)
+![Vending Machine 3](src/screenshots/vending-machine-3.png)
+![Vending Machine 4](src/screenshots/vending-machine-4.png)
+![Vending Machine 5](src/screenshots/vending-machine-5.png)
 
 ## How To Run
 1. Clone down this repository to a local directory of your choosing.
