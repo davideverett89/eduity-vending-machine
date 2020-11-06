@@ -4,7 +4,7 @@
       v-if="currentlyVending === false"
       class="lcd-display border border-dark"
     >
-      {{ coinInserted ? '$0.25' : '$0.00' }}
+      {{ calculateMoney > 0 ? `$${calculateMoney.toFixed(2)}` : '$0.00' }}
     </h3>
     <h3
       v-else
@@ -15,15 +15,17 @@
     <div class="d-flex justify-content-around align-items-center mt-5">
       <button
         class="btn btn-success"
+        :disabled="currentlyVending || change > 0"
         @click="insertCoin"
       >
         Insert Coin
       </button>
       <button
         class="btn btn-danger"
+        :disabled="currentlyVending || change > 0"
         @click="ejectCoin"
       >
-        Eject Coin
+        Make Change
       </button>
     </div>
   </div>
@@ -41,15 +43,19 @@ export default {
           type: Function,
           default: null
       },
-      coinInserted: {
-          type: Boolean,
-          default: false
-      },
       currentlyVending: {
         type: Boolean,
         default: false
+      },
+      calculateMoney: {
+        type: Number,
+        default: 0,
+      },
+      change: {
+        type: Number,
+        default: 0,
       }
-  },
+  }
 }
 </script>
 

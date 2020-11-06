@@ -1,50 +1,50 @@
 {
     "soda1": {
         "name": "Coca-cola",
+        "price": 0.75,
         "quantity": 1,
-        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51uJdR27f7L._AC_UX466_.jpg",
-        "description": "Coca-Cola, or Coke, is a carbonated soft drink manufactured by The Coca-Cola Company. Originally marketed as a temperance drink and intended as a patent medicine, it was invented in the late 19th century by John Stith Pemberton and was bought out by businessman Asa Griggs Candler, whose marketing tactics led Coca-Cola to its dominance of the world soft-drink market throughout the 20th century."
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/51uJdR27f7L._AC_UX466_.jpg"
     },
     "soda2": {
         "name": "Pepsi-cola",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/pepsi-cola.jpg",
-        "description": "Pepsi is a carbonated soft drink manufactured by PepsiCo. Originally created and developed in 1893 by Caleb Bradham and introduced as Brad's Drink, it was renamed as Pepsi-Cola in 1898,[1] and then shortened to Pepsi in 1961."
+        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/pepsi-cola.jpg"
     },
     "soda3": {
         "name": "Mountain Dew",
+        "price": 0.75,
         "quantity": 0,
-        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/mountain-dew.jpg",
-        "description": "Mountain Dew is a carbonated soft drink brand produced and owned by PepsiCo. The original formula was invented in 1940 by Tennessee beverage bottlers Barney and Ally Hartman."
+        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/mountain-dew.jpg"
     },
     "soda4": {
         "name": "Dr Pepper",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/dr-pepper.jpg",
-        "description": "Dr Pepper is a carbonated soft drink. It was created in the 1880s by pharmacist Charles Alderton in Waco, Texas, and first served around 1885. Dr Pepper was first nationally marketed in the United States in 1904 and is now also sold in Europe, Asia, North and South America, and Australia, as well as New Zealand and South Africa as an imported good."
+        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/dr-pepper.jpg"
     },
     "soda5": {
         "name": "Fanta",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/fanta-soft-drinks.jpg",
-        "description": "Fanta is a brand of fruit-flavored carbonated soft drinks created by Coca-Cola Deutschland under the leadership of German businessman Max Keith."
+        "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/fanta-soft-drinks.jpg"
     },
     "soda6": {
         "name": "Sprite",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://cdn.shopify.com/s/files/1/1207/1584/products/sprite-12oz_512x.jpg?v=1571439198",
-        "description": "Sprite is a colorless, lemon and lime-flavored soft drink created by The Coca-Cola Company. It was first developed in West Germany in 1959 as Fanta Klare Zitrone and was introduced in the United States under the current brand name Sprite in 1961 as a competitor to 7 Up."
+        "image_url": "https://cdn.shopify.com/s/files/1/1207/1584/products/sprite-12oz_512x.jpg?v=1571439198"
     },
     "soda7": {
         "name": "7UP",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://www.7up.com//images/catalog/products/2015/12/17/7up.png",
-        "description": "7 Up is an American brand of lemon-lime-flavored non-caffeinated soft drink. The rights to the brand are held by Keurig Dr Pepper in the United States and by 7 Up international in the rest of the world."
+        "image_url": "https://www.7up.com//images/catalog/products/2015/12/17/7up.png"
     },
     "soda8": {
         "name": "Sunkist",
+        "price": 0.75,
         "quantity": 10,
-        "image_url": "https://www.pngjoy.com/pngm/377/6984777_sunkist-logo-sunkist-sunkist-orange-soda-12-oz.png",
-        "description": "Sunkist is a brand of primarily orange flavored soft drinks that launched in 1979."
+        "image_url": "https://www.pngjoy.com/pngm/377/6984777_sunkist-logo-sunkist-sunkist-orange-soda-12-oz.png"
     }
 }

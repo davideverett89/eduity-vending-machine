@@ -6,19 +6,29 @@
           v-for="soda in sodas"
           :key="soda.id"
           :soda="soda"
-          :coin-inserted="coinInserted"
+          :quarters="quarters"
           @click.native="makePurchase(soda)"
         />
       </div>
       <div class="vending-machine-component col-3 border border-dark rounded interface-box">
-        <h2 class="mt-2">
+        <h2
+          v-if="change === 0"
+          class="mt-2"
+        >
           Insert coin and make selection.
+        </h2>
+        <h2
+          v-if="change > 0"
+          class="mt-2 change-text"
+        >
+          Your change is {{ change.toFixed(2) }}
         </h2>
         <CoinSlot
           :insert-coin="insertCoin"
           :eject-coin="ejectCoin"
-          :coin-inserted="coinInserted"
           :currently-vending="currentlyVending"
+          :calculate-money="calculateMoney"
+          :change="change"
         />
         <div class="vending-slot mt-5 border border-dark rounded">
           <VendedSoda
@@ -51,10 +61,18 @@ export default {
   data() {
       return {
           sodas: [],
-          coinInserted: false,
+          quarters: 0,
+          change: 0,
           currentlyVending: false,
           vendedSoda: {},
       }
+  },
+  computed: {
+    // Assuming this machine only accepts quarters, this function multiplies the quarter count in state by 0.25 and returns that result.
+      calculateMoney() {
+      const insertedAmount = 0.25 * this.quarters;
+      return insertedAmount;
+    }
   },
   // When the vending machine component initializes, it gets the array of available sodas from the database.
   mounted() {
@@ -88,33 +106,41 @@ export default {
           }
           this.vendedSoda = {};
           this.currentlyVending = false;
+          this.ejectCoin();
           this.getData();
         });
     },
     // Triggered by click event.  If there is a coin inserted into the mahcine and the soda quantity is more than zero, creates a purchase object
     // to be posted to the database.
       makePurchase(soda) {
-          if (this.coinInserted && soda.quantity > 0) {
-              const newPurchase = {
-                customer_uid: authData.getUid(),
-                soda_id: soda.id,
-                timestamp: moment().format('MMMM Do YYYY, h:mm:ss a')
-              };
-              purchaseData.postPurchase(newPurchase)
-                .then(() => {
-                  this.coinInserted = false;
-                  this.vend(soda);
-                })
-                .catch((err) => console.error('There was an error posting a new purchase:', err));
-          }
+        if (this.calculateMoney >= soda.price && soda.quantity > 0) {
+            const newPurchase = {
+              customer_uid: authData.getUid(),
+              soda_id: soda.id,
+              timestamp: moment().format('MMMM Do YYYY, h:mm:ss a')
+            };
+            purchaseData.postPurchase(newPurchase)
+              .then(() => {
+                this.quarters = (this.calculateMoney - soda.price) / 0.25;
+                this.vend(soda);
+              })
+              .catch((err) => console.error('There was an error posting a new purchase:', err));
+        }
       },
-      // Click event triggered by the insert coin button in the CoinSlot component.  Changes the coinInserted boolean variable in state to true.
+      // Click event triggered by the insert coin button in the CoinSlot component.  Increments the quarter count in state by one.
       insertCoin() {
-          this.coinInserted = true;
+        this.quarters++
       },
-      // Click event triggered by the eject coin button in the CoinSlot component.  Changes the coinInserted boolean variable in state to false.
+      // Click event triggered by the eject coin button in the CoinSlot component.  Returns the quarter count in state to zero.
       ejectCoin() {
-          this.coinInserted = false;
+        if (this.quarters > 0) {
+          this.change = this.quarters * 0.25;
+          this.delay(2000)
+            .then(() => {
+              this.change = 0;
+            });
+          this.quarters = 0;
+        }
       },
   }
 }

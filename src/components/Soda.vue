@@ -21,20 +21,20 @@ export default {
             type: Object,
             default: null,
         },
-        coinInserted: {
-          type: Boolean,
-          default: false
-        },
+        quarters: {
+          type: Number,
+          default: 0,
+      }
     },
     computed: {
       // Dynamically returns a string of classes based on whether or not a customer has inserted a coin, if the soda is sold out, or both.
       applyClass() {
         let extraClass = '';
-        if (this.coinInserted && this.soda.quantity > 0) {
+        if (this.quarters > 0 && this.soda.quantity > 0) {
           extraClass += 'coin-inserted';
         } else if (this.soda.quantity === 0) {
           extraClass += 'no-coin sold-out';
-        } else if (this.coinInserted && this.soda.quantity === 0) {
+        } else if (this.quarters > 0 && this.soda.quantity === 0) {
           extraClass += 'no-coin sold-out';
         } else {
           extraClass += 'no-coin';
