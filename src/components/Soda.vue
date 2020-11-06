@@ -9,6 +9,9 @@
         :src="soda.image_url"
         :alt="soda.name"
       >
+      <p class="soda-text lead">
+        ${{ soda.price.toFixed(2) }}
+      </p>
     </div>
   </div>
 </template>
@@ -21,20 +24,20 @@ export default {
             type: Object,
             default: null,
         },
-        coinInserted: {
-          type: Boolean,
-          default: false
-        },
+        calculateMoney: {
+          type: Number,
+          default: 0,
+      }
     },
     computed: {
       // Dynamically returns a string of classes based on whether or not a customer has inserted a coin, if the soda is sold out, or both.
       applyClass() {
         let extraClass = '';
-        if (this.coinInserted && this.soda.quantity > 0) {
+        if (this.calculateMoney >= this.soda.price && this.soda.quantity > 0) {
           extraClass += 'coin-inserted';
         } else if (this.soda.quantity === 0) {
           extraClass += 'no-coin sold-out';
-        } else if (this.coinInserted && this.soda.quantity === 0) {
+        } else if (this.calculateMoney > 0 && this.soda.quantity === 0) {
           extraClass += 'no-coin sold-out';
         } else {
           extraClass += 'no-coin';
@@ -53,21 +56,26 @@ export default {
         height: 500px;
         overflow: hidden;
         border-radius: 500px;
+        position: relative;
+        text-align: center;
         box-shadow: 0px 0px 6px #B2B2B2;
+        .soda-text {
+          font-size: 30px;
+        }
     }
     .coin-inserted:hover {
         border: 2px solid gray;
         filter: brightness(110%);
     }
     .no-coin {
-      filter: brightness(70%);
+      filter: brightness(50%);
     }
     .sold-out::after {
       content: url("https://raw.githubusercontent.com/morecallan/css102-e6/master/images/soldOut.png");
       opacity: 1;
       position: relative;
       right: 115px;
-      bottom: 315px;
+      bottom: 365px;
     }
 }
 </style>
