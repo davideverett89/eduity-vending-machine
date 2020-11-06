@@ -1,13 +1,13 @@
 {
     "soda1": {
         "name": "Coca-cola",
-        "price": 0.75,
+        "price": 1.00,
         "quantity": 1,
         "image_url": "https://images-na.ssl-images-amazon.com/images/I/51uJdR27f7L._AC_UX466_.jpg"
     },
     "soda2": {
         "name": "Pepsi-cola",
-        "price": 0.75,
+        "price": 1.00,
         "quantity": 10,
         "image_url": "https://www.caffeineinformer.com/wp-content/caffeine/pepsi-cola.jpg"
     },
@@ -31,7 +31,7 @@
     },
     "soda6": {
         "name": "Sprite",
-        "price": 0.75,
+        "price": 1.00,
         "quantity": 10,
         "image_url": "https://cdn.shopify.com/s/files/1/1207/1584/products/sprite-12oz_512x.jpg?v=1571439198"
     },

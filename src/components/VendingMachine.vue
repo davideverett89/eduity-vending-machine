@@ -6,23 +6,24 @@
           v-for="soda in sodas"
           :key="soda.id"
           :soda="soda"
-          :quarters="quarters"
+          :calculate-money="calculateMoney"
           @click.native="makePurchase(soda)"
         />
       </div>
       <div class="vending-machine-component col-3 border border-dark rounded interface-box">
         <h2
           v-if="change === 0"
-          class="mt-2"
+          class="mt-2 slot-header"
         >
-          Insert coin and make selection.
+          {{ currentlyVending ? 'Enjoy!': 'Insert coin and make selection.' }}
         </h2>
         <h2
           v-if="change > 0"
-          class="mt-2 change-text"
+          class="mt-2 slot-header change-text"
         >
-          Your change is {{ change.toFixed(2) }}
+          Your change is ${{ change.toFixed(2) }}
         </h2>
+        <span>Quarters Only Please.</span>
         <CoinSlot
           :insert-coin="insertCoin"
           :eject-coin="ejectCoin"
@@ -106,14 +107,13 @@ export default {
           }
           this.vendedSoda = {};
           this.currentlyVending = false;
-          this.ejectCoin();
           this.getData();
         });
     },
     // Triggered by click event.  If there is a coin inserted into the mahcine and the soda quantity is more than zero, creates a purchase object
     // to be posted to the database.
       makePurchase(soda) {
-        if (this.calculateMoney >= soda.price && soda.quantity > 0) {
+        if (this.calculateMoney >= soda.price && soda.quantity > 0 && this.currentlyVending === false) {
             const newPurchase = {
               customer_uid: authData.getUid(),
               soda_id: soda.id,
@@ -147,7 +147,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.interface-box {
+  box-shadow: 0px 0px 6px #B2B2B2;
+}
+
 .vending-slot {
-  min-height: 755px;
+  min-height: 720px;
+  box-shadow: 0px 0px 6px #B2B2B2;
+}
+
+.slot-header {
+  min-height: 76px;
 }
 </style>
